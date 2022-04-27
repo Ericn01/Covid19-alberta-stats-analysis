@@ -1,5 +1,7 @@
 package application;
 
+import java.text.DecimalFormat;
+
 public class DataAnalyser {
 
 	private CovidData[] container;
@@ -23,6 +25,7 @@ public class DataAnalyser {
 	private int northZoneDeaths = 0;
 	private int centralZoneDeaths = 0;
 	private int southZoneDeaths = 0;
+	private int unknown, unknownZoneDeaths = 0;
 	
 	// Year case counter
 	private int casesIn2019 = 0;
@@ -48,8 +51,9 @@ public class DataAnalyser {
 	private int sixtyToSixtynine = 0;
 	private int seventyToSeventynine = 0;
 	private int overEighty = 0;
+	private int unknownAge = 0;
 	
-	// Age case counter
+	// Age death counter
 	private int underOneDeaths = 0;
 	private int oneToFourDeaths = 0;
 	private int fiveToNineDeaths = 0;
@@ -61,7 +65,7 @@ public class DataAnalyser {
 	private int sixtyToSixtynineDeaths = 0;
 	private int seventyToSeventynineDeaths = 0;
 	private int overEightyDeaths = 0;	
-	
+	private int unknownAgeDeaths = 0;
 	// Month case counters
 	private int casesInJan, deathsInJan = 0; 
 	private int casesInFeb, deathsInFeb = 0;
@@ -93,9 +97,8 @@ public class DataAnalyser {
 	 */
 	public void dataReport() {
 		int totalCases = FileLoader.NUMBER_OF_ENTRIES;
-		System.out.println("Here's a short overview of Alberta's covid data");
-		System.out.printf("%n%-26s%-7s%-15s%-10s%1s%n%n", "", "CASES", "Percent Ratio", "DEATHS", "Percent Ratio"); // header
 		
+		printHeader();
 		ratioPrint("Total ", totalCases, totalMortalities);
 		System.out.println("\nBY YEAR\n");
 		ratioPrint("2019 ", casesIn2019, deathsIn2019);	
@@ -104,7 +107,6 @@ public class DataAnalyser {
 		ratioPrint("2022 ", casesIn2022, deathsIn2022);
 		
 		System.out.println("\nBY MONTH\n");
-		System.out.println();
 		ratioPrint("January ", casesInJan, deathsInJan);
 		ratioPrint("February ", casesInFeb, deathsInFeb);
 		ratioPrint("March ", casesInMar, deathsInMar);
@@ -130,6 +132,7 @@ public class DataAnalyser {
 		ratioPrint("60 - 69 years old ", sixtyToSixtynine, sixtyToSixtynineDeaths);
 		ratioPrint("70 - 79 years old ", seventyToSeventynine, seventyToSeventynineDeaths);
 		ratioPrint("80+ years old ", overEighty, overEightyDeaths);
+		ratioPrint("Unknown age ", unknownAge, unknownAgeDeaths);
 		
 		
 		System.out.println("\nBY ZONE\n");
@@ -138,12 +141,15 @@ public class DataAnalyser {
 		ratioPrint("South Zone ", southZone, southZoneDeaths);
 		ratioPrint("Edmonton Zone ", edmontonZone, edmontonZoneDeaths);
 		ratioPrint("Calgary Zone ", calgaryZone, calgaryZoneDeaths);
+		ratioPrint("Unknown area ", unknown, unknownZoneDeaths);
 		
 		
 		System.out.println("\nBY GENDER\n");;
 		ratioPrint("Male", maleCases, maleMortalities);
 		ratioPrint("Female", femaleCases, femaleMortalities);
-		System.out.println("\n\nAverage age of death is " + (int)(ageTally / totalMortalities) + " years old");
+		System.out.println("\nThe average age of death from COVID-19 in Alberta is " + (int)(ageTally / totalMortalities) + " years old");
+		DecimalFormat df = new DecimalFormat("###.###");
+		System.out.println("The mortality rate of COVID-19 in Alberta is " + df.format(((double) totalMortalities / totalCases) * 100) + "%");
 	}
 	
 	/**
@@ -154,8 +160,17 @@ public class DataAnalyser {
 	 */
 	private void ratioPrint(String msg, int cases, int mortalities) {
 		int totalCases = FileLoader.NUMBER_OF_ENTRIES;
-		System.out.printf("%-4s%-22s%,-12d%-1s%-1.3f%-10s%,-10d%-1s%-1.3f%-1s%n", "", msg, cases, "(",  ((double) cases / totalCases) * 100, "%)", 
+		System.out.printf("%-4s%-22s%,-10d%-1s%-1.3f%-9s%,-10d%-1s%-1.3f%-1s%n", "", msg, cases, "(",  ((double) cases / totalCases) * 100, "%)", 
 						mortalities, "(", ((double) mortalities / totalMortalities) * 100, "%)");
+	}
+	
+	private void printHeader() {
+		System.out.println("Here's a short overview of Alberta's covid data");
+		System.out.printf("%n%-26s%-10s%-17s%-10s%1s%n", "", "CASES", "Percent Ratio", "DEATHS", "Percent Ratio"); // header
+		for (int i = 0; i < 80; i++) {
+			System.out.print("*");
+		}
+		System.out.println();
 	}
 	
 	/**
@@ -201,7 +216,8 @@ public class DataAnalyser {
 	}
 	
 	private void zoneCasesAndDeaths(CovidData d) {
-		switch(d.getAlbertaZone().replaceAll("\"", "")) {
+		String zone = d.getAlbertaZone().replaceAll("\"", "");
+		switch(zone) {
 		case "Calgary Zone":
 			calgaryZone++;
 			if (mortalityInterpreter(d.getResultedInDeath()) == 1) {
@@ -232,8 +248,16 @@ public class DataAnalyser {
 				northZoneDeaths++;
 			}
 			break;
+		case "Unknown":
+			unknown++;
+			if (mortalityInterpreter(d.getResultedInDeath()) == 1) {
+				unknownZoneDeaths++;
+			}
+			break;
+		case "":
+			break;
 		default:
-			System.out.println("This should not appear");
+			System.out.println("This should not appear" + zone);
 		}
 	}
 	
@@ -278,6 +302,9 @@ public class DataAnalyser {
 			break;
 		case "70-79 years":
 			seventyToSeventynine++;
+			if (mortalityInterpreter(d.getResultedInDeath()) == 1) {
+				seventyToSeventynineDeaths++;
+			}
 			break;
 		case "1-4 years":
 			oneToFour++;
@@ -303,8 +330,14 @@ public class DataAnalyser {
 				overEightyDeaths++;
 			}
 			break;
+		case "Unknown":
+			unknownAge++;
+			if (mortalityInterpreter(d.getResultedInDeath()) == 1) {
+				unknownAgeDeaths++;
+			}
+			break;
 		default:
-			System.out.println("");
+			System.out.println("Problem with age" + ageGroup);
 		}
 	}
 	/**
