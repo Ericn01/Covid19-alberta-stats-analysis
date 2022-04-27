@@ -90,7 +90,8 @@ public class DataAnalyser {
 	 */
 	public DataAnalyser(CovidData[] container) {
 		this.container=container;
-		calculateAggregateData();
+		calculateAggregateData(); // Calculates data
+		dataReport(); // prints data to console
 	}
 	/**
 	 * Prints the main findings from the data. 
@@ -126,14 +127,13 @@ public class DataAnalyser {
 		ratioPrint("5 - 9 years old", fiveToNine, fiveToNineDeaths);
 		ratioPrint("10 - 19 years old", tenToNineteen, tenToNineteenDeaths);
 		ratioPrint("20 - 29 years old", twentyToTwentynine, twentyToTwentynineDeaths);
-		ratioPrint("20 - 39 years old ", thirtyToThirtynine, thirtyToThirtynineDeaths);
+		ratioPrint("30 - 39 years old ", thirtyToThirtynine, thirtyToThirtynineDeaths);
 		ratioPrint("40 - 49 years old ", fourtyToFourtynine, fourtyToFourtynineDeaths);
 		ratioPrint("50 - 59 years old ", fiftyToFiftynine, fiftyToFiftynineDeaths);
 		ratioPrint("60 - 69 years old ", sixtyToSixtynine, sixtyToSixtynineDeaths);
 		ratioPrint("70 - 79 years old ", seventyToSeventynine, seventyToSeventynineDeaths);
 		ratioPrint("80+ years old ", overEighty, overEightyDeaths);
 		ratioPrint("Unknown age ", unknownAge, unknownAgeDeaths);
-		
 		
 		System.out.println("\nBY ZONE\n");
 		ratioPrint("North Zone ", northZone, northZoneDeaths);
@@ -509,5 +509,230 @@ public class DataAnalyser {
 		}
 		return died;
 	}
+	
+	// Getters to retrieve the data in other classes - impo
+	public CovidData[] getContainer() {
+		return container;
+	}
+	public int getTotalMortalities() {
+		return totalMortalities;
+	}
+	public int getMaleMortalities() {
+		return maleMortalities;
+	}
+	public int getMaleCases() {
+		return maleCases;
+	}
+	public int getFemaleMortalities() {
+		return femaleMortalities;
+	}
+	public int getFemaleCases() {
+		return femaleCases;
+	}
+	public int getCalgaryZone() {
+		return calgaryZone;
+	}
+	public int getEdmontonZone() {
+		return edmontonZone;
+	}
+	public int getNorthZone() {
+		return northZone;
+	}
+	public int getCentralZone() {
+		return centralZone;
+	}
+	public int getSouthZone() {
+		return southZone;
+	}
+	public int getCalgaryZoneDeaths() {
+		return calgaryZoneDeaths;
+	}
+	public int getEdmontonZoneDeaths() {
+		return edmontonZoneDeaths;
+	}
+	public int getNorthZoneDeaths() {
+		return northZoneDeaths;
+	}
+	public int getCentralZoneDeaths() {
+		return centralZoneDeaths;
+	}
+	public int getSouthZoneDeaths() {
+		return southZoneDeaths;
+	}
+	public int getUnknown() {
+		return unknown;
+	}
+	public int getUnknownZoneDeaths() {
+		return unknownZoneDeaths;
+	}
+	public int getCasesIn2019() {
+		return casesIn2019;
+	}
+	public int getCasesIn2020() {
+		return casesIn2020;
+	}
+	public int getCasesIn2021() {
+		return casesIn2021;
+	}
+	public int getCasesIn2022() {
+		return casesIn2022;
+	}
+	public int getDeathsIn2019() {
+		return deathsIn2019;
+	}
+	public int getDeathsIn2020() {
+		return deathsIn2020;
+	}
+	public int getDeathsIn2021() {
+		return deathsIn2021;
+	}
+	public int getDeathsIn2022() {
+		return deathsIn2022;
+	}
+	public int getUnderOne() {
+		return underOne;
+	}
+	public int getOneToFour() {
+		return oneToFour;
+	}
+	public int getFiveToNine() {
+		return fiveToNine;
+	}
+	public int getTenToNineteen() {
+		return tenToNineteen;
+	}
+	public int getTwentyToTwentynine() {
+		return twentyToTwentynine;
+	}
+	public int getThirtyToThirtynine() {
+		return thirtyToThirtynine;
+	}
+	public int getFourtyToFourtynine() {
+		return fourtyToFourtynine;
+	}
+	public int getFiftyToFiftynine() {
+		return fiftyToFiftynine;
+	}
+	public int getSixtyToSixtynine() {
+		return sixtyToSixtynine;
+	}
+	public int getSeventyToSeventynine() {
+		return seventyToSeventynine;
+	}
+	public int getOverEighty() {
+		return overEighty;
+	}
+	public int getUnknownAge() {
+		return unknownAge;
+	}
+	public int getUnderOneDeaths() {
+		return underOneDeaths;
+	}
+	public int getOneToFourDeaths() {
+		return oneToFourDeaths;
+	}
+	public int getFiveToNineDeaths() {
+		return fiveToNineDeaths;
+	}
+	public int getTenToNineteenDeaths() {
+		return tenToNineteenDeaths;
+	}
+	public int getTwentyToTwentynineDeaths() {
+		return twentyToTwentynineDeaths;
+	}
+	public int getThirtyToThirtynineDeaths() {
+		return thirtyToThirtynineDeaths;
+	}
+	public int getFourtyToFourtynineDeaths() {
+		return fourtyToFourtynineDeaths;
+	}
+	public int getFiftyToFiftynineDeaths() {
+		return fiftyToFiftynineDeaths;
+	}
+	public int getSixtyToSixtynineDeaths() {
+		return sixtyToSixtynineDeaths;
+	}
+	public int getSeventyToSeventynineDeaths() {
+		return seventyToSeventynineDeaths;
+	}
+	public int getOverEightyDeaths() {
+		return overEightyDeaths;
+	}
+	public int getUnknownAgeDeaths() {
+		return unknownAgeDeaths;
+	}
+	public int getCasesInJan() {
+		return casesInJan;
+	}
+	public int getDeathsInJan() {
+		return deathsInJan;
+	}
+	public int getCasesInFeb() {
+		return casesInFeb;
+	}
+	public int getDeathsInFeb() {
+		return deathsInFeb;
+	}
+	public int getCasesInMar() {
+		return casesInMar;
+	}
+	public int getDeathsInMar() {
+		return deathsInMar;
+	}
+	public int getCasesInApr() {
+		return casesInApr;
+	}
+	public int getDeathsInApr() {
+		return deathsInApr;
+	}
+	public int getCasesInMay() {
+		return casesInMay;
+	}
+	public int getDeathsInMay() {
+		return deathsInMay;
+	}
+	public int getCasesInJun() {
+		return casesInJun;
+	}
+	public int getDeathsInJun() {
+		return deathsInJun;
+	}
+	public int getCasesInJul() {
+		return casesInJul;
+	}
+	public int getDeathsInJul() {
+		return deathsInJul;
+	}
+	public int getCasesInAug() {
+		return casesInAug;
+	}
+	public int getDeathsInAug() {
+		return deathsInAug;
+	}
+	public int getCasesInSep() {
+		return casesInSep;
+	}
+	public int getDeathsInSep() {
+		return deathsInSep;
+	}
+	public int getCasesInOct() {
+		return casesInOct;
+	}
+	public int getDeathsInOct() {
+		return deathsInOct;
+	}
+	public int getCasesInNov() {
+		return casesInNov;
+	}
+	public int getDeathsInNov() {
+		return deathsInNov;
+	}
+	public int getCasesInDec() {
+		return casesInDec;
+	}
+	public int getDeathsInDec() {
+		return deathsInDec;
+	}
+	
 	
 }
