@@ -66,10 +66,10 @@ public class FileLoader {
 	
 	private String loadTimePerformance(double loadTime) {
 		String performance = "";
-		if (loadTime < 2.0) {
+		if (loadTime < 2.25) {
 			performance = "Very fast";
 		}
-		else if (loadTime >= 2.0 && loadTime < 4.0) {
+		else if (loadTime >= 2.25  && loadTime < 4.0) {
 			performance = "Fast";
 		}
 		else if (loadTime >= 4.0 && loadTime < 6.0) {

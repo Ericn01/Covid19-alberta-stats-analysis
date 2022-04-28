@@ -1,6 +1,8 @@
 package application;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class DataAnalyser {
 
@@ -94,7 +96,9 @@ public class DataAnalyser {
 		dataReport(); // prints data to console
 	}
 	/**
-	 * Prints the main findings from the data. 
+	 * Prints the main findings from the data.
+	 * This is the original data report function which I intend to keep
+	 * Presents the information nicely to the console
 	 */
 	public void dataReport() {
 		int totalCases = FileLoader.NUMBER_OF_ENTRIES;
@@ -192,7 +196,10 @@ public class DataAnalyser {
 			zoneCasesAndDeaths(individualData);
 		}
 	}
-	
+	/**
+	 * Counts the number of cases and deaths between genders for COVID-19 in Alberta
+	 * @param d the current data entry
+	 */
 	private void genderDistributionCounter (CovidData d) {
 		String gender = d.getGender();
 		if (gender.equals("Male")) {
@@ -208,7 +215,10 @@ public class DataAnalyser {
 			femaleMortalities++;
 		}
 	}
-	
+	/**
+	 * Counts up the age of every single entry in the file.
+	 * @param d the current data entry
+	 */
 	private void ageTally(CovidData d) {
 		if (mortalityInterpreter(d.getResultedInDeath()) == 1) {
 			this.ageTally += interpretAgeGroup(d.getAgeGroup());
@@ -501,7 +511,11 @@ public class DataAnalyser {
 			System.out.println("This should never print out");
 		}
 	}
-	
+	/**
+	 * Converts a string into useful data to know if someone died or not
+	 * @param input the input string (Died means they died, NA means they survived)
+	 * @return died the integer interpretation of the input (1 means they died, 0 means they survived)
+	 */
 	private int mortalityInterpreter(String input) {
 		int died = 0; // 0 means the individual survived, 1 means that they did not
 		if (input.equals("Died")) {
@@ -509,8 +523,75 @@ public class DataAnalyser {
 		}
 		return died;
 	}
-	
-	// Getters to retrieve the data in other classes - impo
+	/**
+	 * Looks up and returns the entries that align with the given data
+	 * @param ageGroup the age group you're looking for
+	 * @param gender   the gender 
+	 * @param lookupZones the zones we're looking for [0]: Calgary [1]: Edmonton [2]: North Zone [3]: South Zone [4]: Central zone
+	 * @param timeRange the range of time 
+	 */
+	public ArrayList<CovidData> lookupData(String ageGroup, String gender, boolean[] lookupZones, LocalDate[] timeRange) {
+		int loopCounter = 0;
+		String[] selectedZones = convertLookupZones(lookupZones);
+		ArrayList<CovidData> matches = new ArrayList<>(); // holds all the matches
+		while (loopCounter < container.length) {
+			CovidData currentEntry = container[loopCounter]; // holds our current entry
+			// Recruiting all the required data from our current entry
+			String entryAge = currentEntry.getAgeGroup();
+			String entryGender = currentEntry.getGender();
+			String zone = currentEntry.getAlbertaZone();
+			LocalDate date = currentEntry.getDateReported();
+			// Is the zone located within the selected zone array?
+			boolean zoneMatches = false;
+			for (int i = 0; i < selectedZones.length; i++) { // increases time complexity... any way to do this better?
+				if (zone.equals(selectedZones[i])) {
+					zoneMatches = true;
+					break; // no need to continue looping at this point
+				}
+			}
+			// Check to see that dates are correct/ fall within the given range
+			boolean dateMatches = false;
+			if (date.compareTo(timeRange[0]) >= 0 && date.compareTo(timeRange[1]) <= 0) {
+				dateMatches = true;
+			}
+			// Checking to see if it falls within the ranges we desire.
+			if ((entryAge.equals(ageGroup) || ageGroup.equals("All")) && (entryGender.equals(gender) || gender.equals("All"))
+					&& zoneMatches && dateMatches) {
+				matches.add(currentEntry);
+			}
+		}
+		return matches;
+	}
+	/**
+	 * Converts the checkbox data into usable string that can be compared
+	 * @param zones the data relating to whether a zone checkbox was ticked or not
+	 * @return zonesString the string array of the selected zones
+	 */
+	private String[] convertLookupZones(boolean[] zones) {
+		String[] zonesString = new String[5];
+		for (int i = 0; i < zones.length; i++) {
+			if (zones[0] == true) {
+				zonesString[0] = "Calgary Zone";
+			}
+			if (zones[1] == true) {
+				zonesString[1] = "Edmonton Zone";
+			}
+			if (zones[2] == true) {
+				zonesString[2] = "North Zone";
+			}
+			if (zones[3] == true) {
+				zonesString[3] = "South Zone";
+			}
+			if (zones[4] == true) {
+				zonesString[4] = "Central Zone";
+			}
+			else {
+				zonesString[i] = "";
+			}
+		}
+		return zonesString;
+	}
+	// Getters to retrieve the data in other classes
 	public CovidData[] getContainer() {
 		return container;
 	}
