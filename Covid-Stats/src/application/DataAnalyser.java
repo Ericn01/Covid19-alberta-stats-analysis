@@ -559,6 +559,7 @@ public class DataAnalyser {
 					&& zoneMatches && dateMatches) {
 				matches.add(currentEntry);
 			}
+			loopCounter++;
 		}
 		return matches;
 	}

@@ -16,8 +16,7 @@ public class Main extends Application {
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("StartPane.fxml"));
-			Scene dataLookup = new Scene(root);
-			
+			Scene dataLookup = new Scene(root, 700, 500);
 			primaryStage.setTitle("COVID-19 Data Analysis");
 			primaryStage.setScene(dataLookup);
 			primaryStage.getIcons().add(new Image("file:src/icon.png"));

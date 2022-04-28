@@ -11,8 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: Beige;;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DataLookupController.java">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: Beige;;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DataLookupController">
    <children>
       <Text layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alberta COVID-19 Data Lookup" wrappingWidth="311.7294921875">
          <font>
@@ -54,13 +53,8 @@
       </Text>
       <ComboBox fx:id="genderSelection" layoutX="154.0" layoutY="180.0" prefHeight="24.0" prefWidth="203.0" promptText="All" />
       <Text layoutX="23.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="23.0" />
-      <Text layoutX="14.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time range" wrappingWidth="129.8173828125">
-         <font>
-            <Font name="System Italic" size="15.0" />
-         </font>
-      </Text>
       <Button fx:id="submitBtn" layoutX="24.0" layoutY="455.0" mnemonicParsing="false" onAction="#submit" prefHeight="24.0" prefWidth="109.0" text="Submit" />
-      <Button fx:id="clearBtn" layoutX="193.0" layoutY="455.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="106.0" text="Clear" />
+      <Button fx:id="clearBtn" layoutX="193.0" layoutY="455.0" mnemonicParsing="false" onAction="#clear" prefHeight="24.0" prefWidth="106.0" text="Clear" />
       <Text layoutX="373.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-line-spacing: 20px;;" text="Results" wrappingWidth="242.83642578125">
          <font>
             <Font size="15.0" />
@@ -72,14 +66,14 @@
       <Text layoutX="373.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cases:" wrappingWidth="64.7294921875" />
       <CheckBox fx:id="calgaryCheckbox" layoutX="154.0" layoutY="241.0" mnemonicParsing="false" text="Calgary" />
       <CheckBox fx:id="edmontonCheckbox" layoutX="261.0" layoutY="241.0" mnemonicParsing="false" text="Edmonton" />
-      <CheckBox fx:id="northCheckbox" layoutX="154.0" layoutY="279.0" mnemonicParsing="false" text="North Zone" />
-      <CheckBox fx:id="southCheckbox" layoutX="261.0" layoutY="279.0" mnemonicParsing="false" text="South Zone" />
-      <CheckBox fx:id="centralCheckbox" layoutX="191.0" layoutY="319.0" mnemonicParsing="false" text="Central Zone" />
+      <CheckBox fx:id="northZoneCheckbox" layoutX="154.0" layoutY="279.0" mnemonicParsing="false" text="North Zone" />
+      <CheckBox fx:id="southZoneCheckbox" layoutX="261.0" layoutY="279.0" mnemonicParsing="false" text="South Zone" />
+      <CheckBox fx:id="centralZoneCheckbox" layoutX="191.0" layoutY="319.0" mnemonicParsing="false" text="Central Zone" />
       <Text layoutX="373.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deaths:" wrappingWidth="55.27587890625" />
       <Text fx:id="caseNum" layoutX="438.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="249.7294921875" />
       <Text fx:id="deathNum" layoutX="438.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="249.7294921875" />
-      <DatePicker fx:id="startTime" layoutX="147.0" layoutY="369.0" promptText="DD/MM/YYYY" />
-      <Text layoutX="14.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date" wrappingWidth="129.8173828125">
+      <DatePicker fx:id="startTime" layoutX="147.0" layoutY="359.0" promptText="DD/MM/YYYY" />
+      <Text layoutX="14.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date" wrappingWidth="129.8173828125">
          <font>
             <Font size="15.0" />
          </font>

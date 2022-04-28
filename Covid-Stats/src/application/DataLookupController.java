@@ -2,6 +2,7 @@ package application;
 
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -57,8 +58,7 @@ public class DataLookupController implements Initializable {
 	
 	// METHODS SECTION
 
-	public void submit(ActionEvent e, CovidData[] container) {
-
+	public void submit(ActionEvent e) {
 			resultsList.getItems().clear();
 
 			// Initializing local input variables
@@ -71,21 +71,82 @@ public class DataLookupController implements Initializable {
 			
 			// Do the lookup
 			ArrayList<CovidData> matchingEntries = Main.analysis.lookupData(ageSelection, genderSelect, selectedZones, timeRange);
+			printMatchingEntries(matchingEntries);
+			DecimalFormat df = new DecimalFormat("###.###");
+			
+			// Holds the number of cases and deaths in relation to the given parameters
+			int paramCases = matchingEntries.size();
+			int paramDeaths = getDeathNumFromSelection(matchingEntries);
+			caseNum.setText(Integer.toString(paramCases) + " (" + df.format(((double)paramCases / FileLoader.NUMBER_OF_ENTRIES) * 100) + "% of all cases)");
+			deathNum.setText(Integer.toString(paramDeaths) + " (" + df.format(((double) paramDeaths / (Main.analysis.getTotalMortalities()) * 100)) + "% of all deaths)");
 			resultsList.getItems().addAll(matchingEntries); // populations the list view
 
+	}
+	public void printMatchingEntries(ArrayList<CovidData> entries) {
+		int counter =0;
+		for (CovidData i: entries) {
+			if (counter > 100) {
+			System.out.println(i);
+			}
+			else {break;}
+			counter++;
+		}
+	}
+	public void clear(ActionEvent e) {
+		ageGroupSelection.setValue("All"); // setting the default value to all
+		genderSelection.setValue("All");
+		// Setting every checkbox to be selected by default
+		calgaryCheckbox.setSelected(true);
+		edmontonCheckbox.setSelected(true);		
+		northZoneCheckbox.setSelected(true);		
+		southZoneCheckbox.setSelected(true);
+		centralZoneCheckbox.setSelected(true);
+		caseNum.setText("");
+		deathNum.setText("");
+		startTime.setValue(LocalDate.of(2020, 03, 01));
+		endTime.setValue(LocalDate.now());
+	}
+	/**
+	 * Calculates the number of deaths from the user's selection
+	 * @param data
+	 * @return
+	 */
+	private int getDeathNumFromSelection(ArrayList<CovidData> data) {
+		int deathNum = 0;
+		for (CovidData i: data) {
+			String result = i.getResultedInDeath().replaceAll("\"", "");
+			if (!result.toLowerCase().equals("na")) {
+				deathNum++;
+			}
+		}
+		return deathNum;
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Populating data in the two combo boxes
 		ageGroupSelection.getItems().addAll(ageGroupOptions);
+		ageGroupSelection.setValue("All"); // setting the default value to all
 		genderSelection.getItems().addAll(genderOptions);
+		genderSelection.setValue("All");
+		// Setting every checkbox to be selected by default
+		calgaryCheckbox.setSelected(true);
+		edmontonCheckbox.setSelected(true);		
+		northZoneCheckbox.setSelected(true);		
+		southZoneCheckbox.setSelected(true);
+		centralZoneCheckbox.setSelected(true);
+		
+		startTime.setValue(LocalDate.of(2020, 03, 01));
+		endTime.setValue(LocalDate.now()); // sets it to the current day
 	}
-
-	
+	/**
+	 * Boolean representation of the state of the checkboxes
+	 * @return
+	 */
 	private boolean[] getZoneSelections() {
 		boolean[] zoneSelect = {calgaryCheckbox.isSelected(), edmontonCheckbox.isSelected(),
 								northZoneCheckbox.isSelected(), southZoneCheckbox.isSelected(),
-								centralZoneCheckbox.isSelected()};					
+								centralZoneCheckbox.isSelected()};			
+		System.out.println(zoneSelect);
 		return zoneSelect;
 	}
 	

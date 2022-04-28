@@ -71,7 +71,7 @@ public class CovidData {
 	}
 	
 	public String toString() {
-		return "ID: " + id + ", Reported on: " + dateReported + ", Zone: " + albertaZone + ", Gender: " + gender + ", age group: " + ageGroup + ", died: " + resultedInDeath;
+		return "ID: " + id + ", " + dateReported + ", " + albertaZone + ", " + gender + ", " + ageGroup;
 	}
 	
 }
