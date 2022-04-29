@@ -10,7 +10,8 @@ import javafx.scene.image.Image;
 
 
 public class Main extends Application {
-	public static DataAnalyser analysis = new DataAnalyser(new FileLoader().getDataContainer()); // The only instance of file loader and data analyzer, hence the static keyword
+	public final static DataAnalyser analysis = new DataAnalyser(new FileLoader().getDataContainer()); // The only instance of file loader and data analyzer, immutable hence the final keyword
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {

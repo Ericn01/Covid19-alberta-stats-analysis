@@ -564,12 +564,12 @@ public class DataAnalyser {
 		return matches;
 	}
 	/**
-	 * Converts the checkbox data into usable string that can be compared
-	 * @param zones the data relating to whether a zone checkbox was ticked or not
+	 * Converts the Checkbox data into usable string that can be compared
+	 * @param zones the data relating to whether a zone Checkbox was ticked or not
 	 * @return zonesString the string array of the selected zones
 	 */
 	private String[] convertLookupZones(boolean[] zones) {
-		String[] zonesString = new String[5];
+		String[] zonesString = new String[6];
 		for (int i = 0; i < zones.length; i++) {
 			if (zones[0] == true) {
 				zonesString[0] = "Calgary Zone";
@@ -585,6 +585,9 @@ public class DataAnalyser {
 			}
 			if (zones[4] == true) {
 				zonesString[4] = "Central Zone";
+			}
+			if (zones[5] == true) {
+				zonesString[5] = "Unknown";
 			}
 			else {
 				zonesString[i] = "";
