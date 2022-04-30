@@ -1,36 +1,31 @@
 package application;
 
-
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import model.DataAnalyser;
+import model.FileLoader;
+import view.ConsolePrint;
+import view.Viewer;
+
 
 
 public class Main extends Application {
-	public final static DataAnalyser analysis = new DataAnalyser(new FileLoader().getDataContainer()); // The only instance of file loader and data analyzer, immutable hence the final keyword
-	
+	public static DataAnalyser analysis = new DataAnalyser(new FileLoader().getDataContainer()); // The only instance of file loader and data analyzer, hence the static keyword
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			
-			Parent root = FXMLLoader.load(getClass().getResource("StartPane.fxml"));
-			Scene dataLookup = new Scene(root, 700, 500);
-			primaryStage.setTitle("COVID-19 Data Analysis");
-			primaryStage.setScene(dataLookup);
-			primaryStage.getIcons().add(new Image("file:src/icon.png"));
-			primaryStage.setResizable(false);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		ConsolePrint.printDataReport(); // prints data to console
+		Viewer appView = new Viewer(primaryStage);
+		appView.loadView();
+		// Configuration
+		primaryStage.getIcons().add(new Image("file:src/icon.png"));
+		primaryStage.setResizable(false);
 	}
 
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 	
 
 	

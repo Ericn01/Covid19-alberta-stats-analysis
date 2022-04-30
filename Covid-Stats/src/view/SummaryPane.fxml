@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: Beige;;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SummaryController">
+   <children>
+      <Text layoutX="13.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alberta COVID-19 Data Summary" wrappingWidth="474.7484130859375">
+         <font>
+            <Font name="Dubai Medium" size="25.0" />
+         </font>
+      </Text>
+      <HBox prefHeight="35.0" prefWidth="700.0" style="-fx-border-width: 5px;">
+         <children>
+            <Button fx:id="dataLookupBtn1" mnemonicParsing="false" onAction="#switchToDataLookupScene" prefHeight="35.0" prefWidth="236.0" text="Data Lookup" />
+            <Button fx:id="dataSummaryBtn1" mnemonicParsing="false" prefHeight="37.0" prefWidth="233.0" text="Data Summary">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="dataGraphBtn" mnemonicParsing="false" onAction="#switchToGraphsScene" prefHeight="36.0" prefWidth="233.0" text="Graph Visualizations" />
+         </children>
+      </HBox>
+      <Text layoutX="23.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="23.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff4800" height="352.0" layoutX="355.0" layoutY="146.0" stroke="#1f0f05" strokeType="INSIDE" width="341.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8ff00" height="414.0" layoutX="12.0" layoutY="85.0" stroke="#1f0f05" strokeType="INSIDE" width="330.0" />
+      <ImageView fitHeight="104.0" fitWidth="74.0" layoutX="612.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Alberta-flag.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="170.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cases" wrappingWidth="60.67924746672611">
+         <font>
+            <Font name="Dubai Medium" size="15.0" />
+         </font>
+      </Text>
+      <StackedBarChart fx:id="casesDeathChart" layoutX="358.0" layoutY="148.0" prefHeight="345.0" prefWidth="341.0" title="COVID-19 Cases and Deaths">
+        <xAxis>
+          <CategoryAxis prefHeight="25.0" prefWidth="285.0" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </StackedBarChart>
+      <Text layoutX="262.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deaths" wrappingWidth="57.962307466566244">
+         <font>
+            <Font name="Dubai Medium" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2020" wrappingWidth="41.660427583753744">
+         <font>
+            <Font name="Dubai Light" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2021" wrappingWidth="41.660427583753744">
+         <font>
+            <Font name="Dubai Light" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2022" wrappingWidth="41.660427583753744">
+         <font>
+            <Font name="Dubai Light" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YEAR" wrappingWidth="41.660427583753744">
+         <font>
+            <Font name="Dubai Regular" size="11.773585319519043" />
+         </font></Text>
+      <Text layoutX="20.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GENDER" wrappingWidth="57.962307466566244">
+         <font>
+            <Font name="Dubai Regular" size="11.773585319519043" />
+         </font></Text>
+      <Line endX="226.0" fill="#7c503f" layoutX="114.0" layoutY="197.0" startX="-101.0" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.5" />
+      <Text layoutX="35.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Male" wrappingWidth="41.660427583753744">
+         <font>
+            <Font name="Dubai Light" size="13.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fbaff" height="57.0" layoutX="354.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" width="234.0" />
+      <Text layoutX="365.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cases">
+         <font>
+            <Font name="Dubai Regular" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="365.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Deaths">
+         <font>
+            <Font name="Dubai Regular" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Female" wrappingWidth="57.962307466566244">
+         <font>
+            <Font name="Dubai Light" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;1 year old" wrappingWidth="100.528305504576">
+         <font>
+            <Font name="Dubai Light" size="13.0" />
+         </font>
+      </Text>
+      <Line endX="227.0" fill="#7c503f" layoutX="113.0" layoutY="257.0" startX="-100.0" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.5" />
+      <Line endX="-54.35845947265625" endY="268.0" fill="#7c503f" layoutX="200.0" layoutY="231.0" startX="-54.358482360839844" startY="-145.0" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.5" />
+      <Line endX="-178.00003051757812" endY="-117.30098724365234" fill="#7c503f" layoutX="190.0" layoutY="231.0" startX="151.00003051757812" startY="-117.30098724365234" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.5" />
+      <Text layoutX="47.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="75.28955078125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Line endX="-54.3585205078125" endY="268.0" fill="#7c503f" layoutX="303.0" layoutY="230.0" startX="-54.3585205078125" startY="-143.0" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.5" />
+      <Text layoutX="20.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AGE RANGE" wrappingWidth="74.26418734937874">
+         <font>
+            <Font size="11.773585319519043" />
+         </font></Text>
+      <Text layoutX="35.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1-4 years old" wrappingWidth="100.528305504576" />
+      <Text layoutX="35.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5-9 years old" wrappingWidth="100.528305504576" />
+      <Text layoutX="35.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10-19 years old" wrappingWidth="105.05660755433155" />
+      <Text layoutX="35.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20-29 years old" wrappingWidth="105.05660755433155" />
+      <Text layoutX="35.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30-39 years old" wrappingWidth="105.05660755433155" />
+      <Text layoutX="35.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="40-49 years old" wrappingWidth="105.05660755433155" />
+      <Text layoutX="35.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="50-59 years old" wrappingWidth="105.05660755433155" />
+      <Text layoutX="35.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="60-69 years old" wrappingWidth="105.05660755433155" />
+      <Text layoutX="35.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="70-79 years old" wrappingWidth="105.05660755433155" />
+      <Text layoutX="35.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="80+ years old" wrappingWidth="105.05660755433155" />
+      <Label fx:id="cases2020" layoutX="165.0" layoutY="135.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="cases2021" layoutX="165.0" layoutY="155.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label layoutX="165.0" layoutY="188.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label fx:id="casesMale" layoutX="165.0" layoutY="215.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="cases2022" layoutX="165.0" layoutY="175.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="casesFemale" layoutX="165.0" layoutY="235.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="casesSubOne" layoutX="165.0" layoutY="275.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="casesOneToFour" layoutX="165.0" layoutY="295.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="casesFiveToNine" layoutX="165.0" layoutY="315.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label fx:id="casesTenToNineteen" layoutX="165.0" layoutY="335.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="casesTwentyToTwentynine" layoutX="165.0" layoutY="361.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label layoutX="165.0" layoutY="465.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label layoutX="165.0" layoutY="455.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label layoutX="165.0" layoutY="427.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label fx:id="casesSixtyToSixtynine" layoutX="165.0" layoutY="435.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label fx:id="casesThirtyToThirtynine" layoutX="165.0" layoutY="375.0" prefHeight="23.0" prefWidth="60.0" />
+      <Label fx:id="casesTwentyToTwentynine" layoutX="165.0" layoutY="355.0" prefHeight="23.0" prefWidth="60.0" />
+      <Label fx:id="casesFiftyToFiftynine" layoutX="165.0" layoutY="415.0" prefHeight="24.0" prefWidth="60.0" />
+      <Label fx:id="casesSeventyToSeventynine" layoutX="165.0" layoutY="455.0" prefHeight="18.0" prefWidth="60.0" />
+      <Label fx:id="casesOverEighty" layoutX="165.0" layoutY="475.0" prefHeight="23.0" prefWidth="60.0" />
+      <Label fx:id="deathsSubOne" layoutX="280.0" layoutY="275.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsOneToFour" layoutX="280.0" layoutY="295.0" prefHeight="24.0" prefWidth="50.0" />
+      <Label fx:id="deathsFiveToNine" layoutX="280.0" layoutY="315.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsTwentyToTwentynine" layoutX="280.0" layoutY="355.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsOverEighty" layoutX="280.0" layoutY="475.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deaths2022" layoutX="280.0" layoutY="175.0" prefHeight="18.0" prefWidth="50.0" />
+      <Label fx:id="deaths2021" layoutX="280.0" layoutY="155.0" prefHeight="18.0" prefWidth="50.0" />
+      <Label fx:id="deaths2020" layoutX="280.0" layoutY="135.0" prefHeight="18.0" prefWidth="50.0" />
+      <Label fx:id="deathsFemale" layoutX="280.0" layoutY="235.0" prefHeight="18.0" prefWidth="50.0" />
+      <Label fx:id="deathsMale" layoutX="280.0" layoutY="215.0" prefHeight="18.0" prefWidth="50.0" />
+      <Label fx:id="deathsTenToNineteen" layoutX="280.0" layoutY="335.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsThirtyToThirtynine" layoutX="280.0" layoutY="375.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsFourtyToFourtynine" layoutX="280.0" layoutY="395.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsFiftyToFiftynine" layoutX="280.0" layoutY="415.0" prefHeight="18.0" prefWidth="50.0" />
+      <Label fx:id="deathsSixtyToSixtynine" layoutX="280.0" layoutY="435.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsSeventyToSeventynine" layoutX="280.0" layoutY="455.0" prefHeight="23.0" prefWidth="50.0" />
+      <Label fx:id="deathsOverEighty" layoutX="280.0" layoutY="475.0" prefHeight="23.0" prefWidth="58.0" />
+      <Label fx:id="casesFourtyToFourtynine" layoutX="165.0" layoutY="395.0" prefHeight="24.0" prefWidth="61.0" />
+      <Label fx:id="totalCases" layoutX="450.0" layoutY="90.0" prefHeight="23.0" prefWidth="120.0" />
+      <Label fx:id="totalDeaths" layoutX="450.0" layoutY="115.0" prefHeight="23.0" prefWidth="120.0" />
+      <Line endX="227.0" fill="#7c503f" layoutX="112.0" layoutY="498.0" startX="-100.0" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.5" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: Beige;;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CasesChartController">
+   <children>
+      <Text layoutX="13.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alberta COVID-19 Data Charts" wrappingWidth="474.7484130859375">
+         <font>
+            <Font name="Dubai Medium" size="25.0" />
+         </font>
+      </Text>
+      <HBox prefHeight="35.0" prefWidth="700.0" style="-fx-border-width: 5px;">
+         <children>
+            <Button fx:id="dataLookupBtn" mnemonicParsing="false" onAction="#switchToDataLookupScene" prefHeight="35.0" prefWidth="236.0" text="Data Lookup">
+               <font>
+                  <Font name="Dubai Regular" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="dataSummaryBtn" mnemonicParsing="false" onAction="#switchToDataSummaryScene" prefHeight="37.0" prefWidth="233.0" text="Data Summary">
+               <font>
+                  <Font name="Dubai Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="dataGraphBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="233.0" text="Graph Visualizations">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Text layoutX="23.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="23.0" />
+      <Button layoutX="397.0" layoutY="432.0" mnemonicParsing="false" onAction="#switchToDeathGraphScene" prefHeight="42.0" prefWidth="276.0" text="Display Mortality Charts">
+         <font>
+            <Font name="Dubai Medium" size="13.0" />
+         </font>
+      </Button>
+      <LineChart fx:id="casesByAgeLineChart" axisSortingPolicy="NONE" layoutX="5.0" layoutY="80.0" prefHeight="210.0" prefWidth="350.0" title="Cases By Age">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart fx:id="casesByMonthLineChart" layoutX="5.0" layoutY="290.0" prefHeight="220.0" prefWidth="350.0" title="Cases By Month">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <BarChart fx:id="casesByZoneBarChart" layoutX="355.0" layoutY="80.0" prefHeight="350.0" prefWidth="350.0" title="Cases By Zone">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
